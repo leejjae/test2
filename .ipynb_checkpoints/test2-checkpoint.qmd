@@ -40,8 +40,6 @@ df_feature = df.assign(
     speed = lambda df: df.dist/df.trip_duration,
 )
 
-
-
 fig1 = px.scatter_mapbox(
     data_frame = df_feature,
     lat = 'pickup_latitude',
@@ -59,6 +57,7 @@ fig1.update_traces(
     }
 )
 
+
 fig2 = px.density_mapbox(
     data_frame = df_feature,
     lat = 'pickup_latitude',
@@ -73,10 +72,19 @@ fig2 = px.density_mapbox(
 )
 
 
-        'size':3, 
-    }
+fig3 = px.density_mapbox(
+    data_frame = df_feature,
+    lat = 'pickup_latitude',
+    lon = 'pickup_longitude',
+    radius=1.5,
+    center = {'lat':40.7322, 'lon':-73.9052},
+    z = 'passenger_count',
+    #---#
+    mapbox_style = 'carto-positron',
+    zoom=10,
+    width=750,
+    height=600
 )
-
 
 
 
